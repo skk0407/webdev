@@ -1,0 +1,62 @@
+Level 2 task 2:
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 1rem 0;
+        }
+
+        #countdown-timer {
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Countdown Timer</h1>
+    <div id="countdown-timer"></div>
+
+    <script>
+        function countdown() {
+            const targetDate = new Date('2023-12-31 23:59:59').getTime();
+            
+            const updateTimer = setInterval(() => {
+                const now = new Date().getTime();
+                const timeRemaining = targetDate - now;
+
+                if (timeRemaining > 0) {
+                    const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+                    const countdownTimer = document.getElementById('countdown-timer');
+                    countdownTimer.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+                } else {
+                    clearInterval(updateTimer);
+                    const countdownTimer = document.getElementById('countdown-timer');
+                    countdownTimer.innerHTML = 'Countdown expired!';
+                }
+            }, 1000);
+        }
+
+        countdown();
+    </script>
+</body>
+
+</html>
